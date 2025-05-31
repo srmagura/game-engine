@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
+import { createSketch } from './sketch';
+
 export function App() {
-  return (
-    <>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+  useEffect(() => {
+    createSketch();
+
+    return () => {
+      document.querySelector('main')?.remove();
+    };
+  }, []);
+
+  return <></>;
 }
