@@ -5,22 +5,19 @@ export interface Renderable {
 }
 
 export class Character implements Renderable {
-  private readonly emoji: string;
+  private readonly imageName;
   private readonly width = 50;
 
-  constructor(emoji: string) {
-    this.emoji = emoji;
-  }
+  constructor(imageName: string) {}
 
   render(p: p5) {
     p.rect(50, 50, 50, 50);
     p.textSize(this.width);
-    p.text(this.emoji, 50, 100);
   }
 }
 
 export class PlayerCharacter extends Character {
   constructor() {
-    super('🙂');
+    super('player');
   }
 }

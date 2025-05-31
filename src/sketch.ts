@@ -6,6 +6,8 @@ const model = new GameObjectModel();
 const sketch = (p: p5) => {
   p.setup = () => {
     p.createCanvas(800, 500);
+
+    await p.loadImage('player.svg');
   };
 
   p.draw = () => {
