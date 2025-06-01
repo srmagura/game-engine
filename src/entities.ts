@@ -1,18 +1,29 @@
-import type p5 from 'p5';
+import type { GameContext } from './GameContext';
 
 export interface Renderable {
-  render(p: p5): void;
+  render(ctx: GameContext): void;
 }
+
+export type Point = [x: number, y: number];
 
 export class Character implements Renderable {
   private readonly imageName;
-  private readonly width = 50;
+  private readonly width = 48;
 
-  constructor(imageName: string) {}
+  private position: Point = [0, 0];
 
-  render(p: p5) {
-    p.rect(50, 50, 50, 50);
-    p.textSize(this.width);
+  constructor(imageName: string) {
+    this.imageName = imageName;
+  }
+
+  render({ p, imageRegistry }: GameContext) {
+    p.image(
+      imageRegistry.get(this.imageName),
+      this.position[0],
+      this.position[1],
+      this.width,
+      this.width
+    );
   }
 }
 
