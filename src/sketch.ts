@@ -7,8 +7,6 @@ const model = new GameObjectModel();
 const imageRegistry = new ImageRegistry();
 
 const sketch = (p: p5) => {
-  const id = Math.random();
-
   p.setup = () => {
     p.frameRate(60);
     p.createCanvas(800, 500);
@@ -17,7 +15,6 @@ const sketch = (p: p5) => {
   };
 
   p.draw = () => {
-    console.log('render ', id);
     p.background('#ddd');
 
     model.update(p);

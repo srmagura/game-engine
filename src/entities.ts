@@ -14,6 +14,7 @@ export class PositionObject {
   velocity: Point = [0, 0];
 
   update() {
+    // TODO
     console.log(this.velocity);
   }
 }
@@ -54,12 +55,10 @@ export class PlayerCharacter extends Character {
   }
 
   update(p: p5) {
-    console.log('player update', p.keyIsDown(65));
-    // A
-    // if (p.keyIsDown(65)) {
-    //   console.log('set velocity');
-    //   this.pos.velocity = [-1 * PLAYER_SPEED, 0];
-    // }
-    //super.update(p);
+    if (p.keyIsDown('a' as any)) {
+      this.pos.velocity = [-1 * PLAYER_SPEED, 0];
+    }
+
+    super.update(p);
   }
 }
