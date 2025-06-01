@@ -1,22 +1,28 @@
 import p5 from 'p5';
 import { GameObjectModel } from './GameObjectModel';
 import { ImageRegistry } from './imageRegistry';
-import type { GameContext } from './GameContext';
+import type { RenderContext } from './RenderContext';
 
 const model = new GameObjectModel();
 const imageRegistry = new ImageRegistry();
 
 const sketch = (p: p5) => {
+  const id = Math.random();
+
   p.setup = () => {
+    p.frameRate(60);
     p.createCanvas(800, 500);
 
     imageRegistry.load(p);
   };
 
   p.draw = () => {
+    console.log('render ', id);
     p.background('#ddd');
 
-    const ctx: GameContext = { p, imageRegistry };
+    model.update(p);
+
+    const ctx: RenderContext = { p, imageRegistry };
     model.render(ctx);
   };
 };
@@ -26,4 +32,8 @@ export function createSketch() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).p = p;
+
+  return () => {
+    p.remove();
+  };
 }

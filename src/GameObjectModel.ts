@@ -1,10 +1,20 @@
+import type p5 from 'p5';
 import { PlayerCharacter, type Character } from './entities';
-import type { GameContext } from './GameContext';
+import type { RenderContext } from './RenderContext';
+
+const player = new PlayerCharacter();
 
 export class GameObjectModel {
-  private readonly characters: Character[] = [new PlayerCharacter()];
+  protected readonly characters: Character[] = [player];
+  currentPlayer: PlayerCharacter = player;
 
-  render(ctx: GameContext) {
+  update(p: p5) {
+    for (const character of this.characters) {
+      character.update(p);
+    }
+  }
+
+  render(ctx: RenderContext) {
     for (const character of this.characters) {
       character.render(ctx);
     }
